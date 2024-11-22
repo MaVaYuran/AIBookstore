@@ -48,6 +48,10 @@ public class Order {
         this.status = status;
     }
 
+    public void setClosingTimestamp(LocalDateTime closingTimestamp) {
+        this.closingTimestamp = closingTimestamp;
+    }
+
     public String getOrderDetails() {
         return "Order{" +"id=" + id +
                ", Book=" + book.getTitle() +" : price " + book.getPrice() +
@@ -55,5 +59,6 @@ public class Order {
                ", openingTimestamp=" + openingTimestamp +
                '}';
     }
+
 
 }

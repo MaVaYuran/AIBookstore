@@ -46,6 +46,7 @@ public class BookOrderServlet extends HttpServlet {
 
         if (selectedBook != null) {
             Order order = new Order(selectedBook);
+            req.setAttribute("order", order);
             req.setAttribute("orderDetails", order.getOrderDetails());
             req.getRequestDispatcher("/jsp/order_details.jsp").forward(req, resp);
         } else {
