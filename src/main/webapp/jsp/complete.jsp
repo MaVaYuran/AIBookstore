@@ -14,5 +14,6 @@
     <p>Time: ${order.closingTimestamp}</p>
     <p>Status: ${order.status}</p>
   </div>
+    <a href="${pageContext.request.contextPath}/order" class="back-link">Go back!</a>
 </body>
 </html>

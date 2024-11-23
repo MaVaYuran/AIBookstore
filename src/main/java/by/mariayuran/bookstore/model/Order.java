@@ -1,5 +1,7 @@
 package by.mariayuran.bookstore.model;
 
+import by.mariayuran.bookstore.fake.FakeStorage;
+
 import java.time.LocalDateTime;
 
 public class Order {
@@ -10,6 +12,8 @@ public class Order {
     private LocalDateTime closingTimestamp;
     private int id;
     private static int ID=0;
+    private FakeStorage fakeStorage;
+
 
 
     public Order() {
@@ -19,6 +23,7 @@ public class Order {
         this.book = book;
         this.openingTimestamp = LocalDateTime.now();
         this.status = OrderStatus.OPEN;
+
     }
     public Book getBook() {
         return book;
