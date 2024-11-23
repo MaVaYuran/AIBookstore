@@ -20,7 +20,7 @@
            <input type="number" hidden name="id" value="${order.id}">
            <input type="submit" name="complete" value="Complete">
         </form>
-        <form action="/cancel" method="GET">
+        <form action="/cancel" method="POST">
            <input type="number" hidden name="id" value="${order.id}">
            <input type="submit" name="cancel" value="Cancel">
         </form>

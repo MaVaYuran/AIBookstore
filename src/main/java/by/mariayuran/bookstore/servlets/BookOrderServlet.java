@@ -4,6 +4,8 @@ import by.mariayuran.bookstore.library.LibraryRepository;
 import by.mariayuran.bookstore.library.LibraryRepositoryImpl;
 import by.mariayuran.bookstore.model.Book;
 import by.mariayuran.bookstore.model.Order;
+import by.mariayuran.bookstore.service.OrderService;
+import by.mariayuran.bookstore.service.OrderServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,9 +19,11 @@ import java.util.List;
 public class BookOrderServlet extends HttpServlet {
     protected LibraryRepository libraryRepository;
     protected List<Book> storeLibrary;
+    protected OrderService orderService;
 
     @Override
     public void init() {
+        orderService = new OrderServiceImpl();
         libraryRepository = new LibraryRepositoryImpl("library.json");
         storeLibrary = libraryRepository.loadLibrary();
         System.out.println(storeLibrary);
@@ -46,6 +50,7 @@ public class BookOrderServlet extends HttpServlet {
 
         if (selectedBook != null) {
             Order order = new Order(selectedBook);
+            orderService.addOrder(order);
             req.setAttribute("order", order);
             req.setAttribute("orderDetails", order.getOrderDetails());
             req.getRequestDispatcher("/jsp/order_details.jsp").forward(req, resp);
