@@ -18,7 +18,8 @@ import java.util.List;
 @WebServlet("/order")
 public class BookOrderServlet extends HttpServlet {
     protected LibraryRepository libraryRepository;
-    protected List<Book> storeLibrary;protected OrderService orderService;
+    protected List<Book> storeLibrary;
+    protected OrderService orderService;
 
     @Override
     public void init() {

@@ -5,12 +5,11 @@ import by.mariayuran.bookstore.fake.FakeStorage;
 import java.time.LocalDateTime;
 
 public class Order {
-//    private int id;
+    private int id;
     private Book book;
     private OrderStatus status;
     private LocalDateTime openingTimestamp;
     private LocalDateTime closingTimestamp;
-    private int id;
     private static int ID=0;
     private FakeStorage fakeStorage;
 
@@ -64,6 +63,4 @@ public class Order {
                ", openingTimestamp=" + openingTimestamp +
                '}';
     }
-
-
 }

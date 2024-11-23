@@ -26,7 +26,6 @@ public class СancelServlet extends HttpServlet {
         Order order = orderService.getOrderById(Integer.parseInt(idStr));
         if (order != null) {
             orderService.cancelOrder(order.getId());
-            System.out.println(order.getOrderDetails());
 
             req.setAttribute("order", order);
             req.setAttribute("orderDetails", order.getOrderDetails());
