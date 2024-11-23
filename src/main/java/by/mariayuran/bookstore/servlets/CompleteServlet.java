@@ -22,14 +22,24 @@ public class CompleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String idStr = req.getParameter("id");
-        int id = Integer.parseInt(idStr);
-         req.setAttribute("id", id);
-         req.getRequestDispatcher("/jsp/complete.jsp").forward(req, resp);
+//        String idStr = req.getParameter("id");
+//        int id = Integer.parseInt(idStr);
+//         req.setAttribute("id", id);
+//         req.getRequestDispatcher("/jsp/complete.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String idStr = req.getParameter("id");
+        Order order = orderService.getOrderById(Integer.parseInt(idStr));
+        if (order != null) {
+            orderService.completeOrder(order.getId());
+            req.setAttribute("order", order);
+           req.getRequestDispatcher("/jsp/complete.jsp").forward(req, resp);
+        }
+        else{
+            req.setAttribute("error", "Order couldn't be completed");
+            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
+        }
     }
 }
