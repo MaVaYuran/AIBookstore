@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/complete")
-public class CompleteServlet extends HttpServlet {
+@WebServlet("/cancel")
+public class СancelServlet extends HttpServlet {
     private OrderService orderService;
 
     @Override
@@ -25,11 +25,11 @@ public class CompleteServlet extends HttpServlet {
         String idStr = req.getParameter("id");
         Order order = orderService.getOrderById(Integer.parseInt(idStr));
         if (order != null) {
-            orderService.completeOrder(order.getId());
+            orderService.cancelOrder(order.getId());
 
             req.setAttribute("order", order);
             req.setAttribute("orderDetails", order.getOrderDetails());
-            req.getRequestDispatcher("/jsp/complete.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/cancel.jsp").forward(req, resp);
 
         }
         else{
