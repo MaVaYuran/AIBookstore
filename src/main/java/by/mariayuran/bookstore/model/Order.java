@@ -5,19 +5,17 @@ import java.time.LocalDateTime;
 public class Order {
     private int id;
     private Book book;
-    private double totalPrice = 0;
+    private double totalPrice;
     private OrderStatus status;
     private LocalDateTime openingTimestamp;
     private LocalDateTime closingTimestamp;
-    private static int ID = 0;
-//    private FakeStorage fakeStorage;
 
 
     public Order() {
     }
 
     public Order(Book book) {
-        this.id = ++ID;
+
         this.book = book;
         totalPrice += book.getPrice();
         this.openingTimestamp = LocalDateTime.now();
@@ -45,8 +43,8 @@ public class Order {
         return id;
     }
 
-    public static int getID() {
-        return ID;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
     public void setStatus(OrderStatus status) {

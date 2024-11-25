@@ -14,7 +14,7 @@ public class OrderServiceImpl implements OrderService {
     private static final String FIND_ORDER_BY_ID = """
             SELECT book_id, order_t_id,total_price, status, opening_timestamp 
             FROM book_order_t bo 
-            JOIN order_t o ON bo.order_t_id= o.id 
+            JOIN order_t o ON bo.order_t_id = o.id 
             WHERE o.id = ?;
             """;
     private static final String UPDATE_STATUS_TO_COMPLETED = """
