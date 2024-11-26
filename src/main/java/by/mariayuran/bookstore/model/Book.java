@@ -1,6 +1,7 @@
 package by.mariayuran.bookstore.model;
 
 public class Book {
+    private int id;
     private String title;
     private double price;
 
@@ -10,6 +11,10 @@ public class Book {
     public Book(String title, double price) {
         this.title = title;
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
