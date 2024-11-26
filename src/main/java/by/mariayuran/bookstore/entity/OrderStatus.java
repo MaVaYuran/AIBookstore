@@ -1,4 +1,4 @@
-package by.mariayuran.bookstore.model;
+package by.mariayuran.bookstore.entity;
 
 public enum OrderStatus {
     OPEN, COMPLETED, CANCELLED;

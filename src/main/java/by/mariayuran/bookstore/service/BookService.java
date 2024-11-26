@@ -1,7 +1,7 @@
 package by.mariayuran.bookstore.service;
 
-import by.mariayuran.bookstore.model.Book;
+import by.mariayuran.bookstore.entity.Book;
 
 public interface BookService {
-     Book getBookById(int id);
+     Book findById(Integer id);
 }

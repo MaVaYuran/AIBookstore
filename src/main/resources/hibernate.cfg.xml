@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/bookstore_db</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">root</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Display SQL in console -->
+        <property name="show_sql">true</property>
+
+        <!-- Create/update tables automatically -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Mapping files -->
+        <mapping class="by.mariayuran.bookstore.entity.Order"/>
+        <mapping class="by.mariayuran.bookstore.entity.Book"/>
+        <mapping class="by.mariayuran.bookstore.entity.Customer"/>
+
+
+    </session-factory>
+</hibernate-configuration>
