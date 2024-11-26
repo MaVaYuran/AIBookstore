@@ -5,6 +5,7 @@ import by.mariayuran.bookstore.utils.ConnectionManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -29,7 +30,7 @@ class BookServiceImplTest {
 
     @Mock
     ResultSet mockResultSet;
-
+    @InjectMocks
     private BookServiceImpl bookService;
 
     @BeforeEach

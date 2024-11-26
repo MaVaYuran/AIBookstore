@@ -83,7 +83,6 @@ class OrderServiceImplTest {
 
         assertTrue(result);
         verify(mockPreparedStatement).setString(1, OrderStatus.COMPLETED.name());
-//        verify(mockPreparedStatement).setTimestamp(2, Timestamp.valueOf(LocalDateTime.now())); doesn't work
         verify(mockPreparedStatement).setInt(3, orderId);
 
     }
@@ -97,7 +96,6 @@ class OrderServiceImplTest {
 
         assertTrue(result);
         verify(mockPreparedStatement).setString(1, OrderStatus.CANCELLED.name());
-//        verify(mockPreparedStatement).setTimestamp(2, Timestamp.valueOf(LocalDateTime.now())); doesn't work
         verify(mockPreparedStatement).setInt(3, orderId);
     }
 }
