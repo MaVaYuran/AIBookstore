@@ -7,9 +7,11 @@ import by.mariayuran.bookstore.dao.OrderDaoImpl;
 import by.mariayuran.bookstore.service.OrderService;
 import by.mariayuran.bookstore.service.OrderServiceImpl;
 import by.mariayuran.bookstore.util.HibernateUtil;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import org.hibernate.SessionFactory;
 
+@WebServlet
 public class AppServlet extends HttpServlet {
     protected BookDao bookDao;
     protected OrderDao orderDao;
@@ -19,6 +21,6 @@ public class AppServlet extends HttpServlet {
         SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
         bookDao = new BookDaoImpl(sessionFactory);
         orderDao = new OrderDaoImpl(sessionFactory);
-        orderService = new OrderServiceImpl(sessionFactory, orderDao, bookDao);
+        orderService = new OrderServiceImpl(orderDao, bookDao);
     }
 }
