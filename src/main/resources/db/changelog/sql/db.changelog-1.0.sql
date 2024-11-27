@@ -22,9 +22,16 @@ closing_timestamp TIMESTAMP,
 FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 
-----changeset mariayuran:4
+--changeset mariayuran:4
 CREATE TABLE book_order_t (
 book_id INT REFERENCES book(id) ON DELETE CASCADE,
 order_t_id INT REFERENCES order_t(id) ON DELETE CASCADE,
 PRIMARY KEY (book_id, order_t_id)
 );
+
+--changeset mariayuran:5
+DROP TABLE book_order_t;
+
+--changeset mariayuran:6
+ALTER TABLE book ADD COLUMN order_id INT;
+ALTER TABLE book ADD CONSTRAINT fk_order_id FOREIGN KEY (order_id) REFERENCES order_t (id) ON DELETE CASCADE;

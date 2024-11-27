@@ -16,6 +16,17 @@ public class Book {
     private String title;
     @Column(name="price")
     private double price;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     public Book() {
     }

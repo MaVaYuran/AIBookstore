@@ -5,9 +5,7 @@ import by.mariayuran.bookstore.dao.OrderDao;
 import by.mariayuran.bookstore.entity.Book;
 import by.mariayuran.bookstore.entity.Order;
 import by.mariayuran.bookstore.entity.OrderStatus;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 
 import java.awt.*;
 import java.time.LocalDateTime;
@@ -34,14 +32,11 @@ public class OrderServiceImpl implements OrderService {
 
             order = orderDao.findById(id);
             if (order != null) {
-                int bookId = order.getBook().getId();
-                Book book = bookDao.findById(bookId);
-                order.setBook(book);
+                Hibernate.initialize(order.getBooks());
                 System.out.println(order.getOrderDetails());
-
                 transaction.commit();
             }
-        } catch (HeadlessException e) {
+        } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
             }

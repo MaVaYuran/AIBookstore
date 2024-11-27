@@ -3,11 +3,8 @@ package by.mariayuran.bookstore.servlets;
 
 import by.mariayuran.bookstore.entity.Book;
 import by.mariayuran.bookstore.entity.Order;
-import by.mariayuran.bookstore.service.OrderService;
-import by.mariayuran.bookstore.service.OrderServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 

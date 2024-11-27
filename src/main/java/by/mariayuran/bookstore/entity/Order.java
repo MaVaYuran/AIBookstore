@@ -2,6 +2,7 @@ package by.mariayuran.bookstore.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,8 +12,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @ManyToMany
-    private Book book;
+    @OneToMany(mappedBy = "order")
+    List <Book> books;
     @Column(name = "total_price")
     private double totalPrice;
     @ManyToOne
@@ -39,17 +40,15 @@ public class Order {
     public Order() {
     }
 
-    public Order(Book book) {
-
-        this.book = book;
-        totalPrice += book.getPrice();
+    public Order(Book... books) {
+        this.books = List.of(books);
+        totalPrice = calculateTotalPrice();
         this.openingTimestamp = LocalDateTime.now();
         this.status = OrderStatus.OPEN;
-
     }
 
-    public Book getBook() {
-        return book;
+    public List<Book> getBooks() {
+        return books;
     }
 
     public OrderStatus getStatus() {
@@ -80,8 +79,11 @@ public class Order {
         this.closingTimestamp = closingTimestamp;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+    private double calculateTotalPrice() {
+        return books.stream().mapToDouble(Book::getPrice).sum();
     }
 
     @Override
@@ -93,7 +95,7 @@ public class Order {
 
         if (id != order.id) return false;
         if (Double.compare(order.totalPrice, totalPrice) != 0) return false;
-        if (!Objects.equals(book, order.book)) return false;
+        if (!Objects.equals(books, order.books)) return false;
         if (!Objects.equals(customer, order.customer)) return false;
         if (status != order.status) return false;
         if (!Objects.equals(openingTimestamp, order.openingTimestamp))
@@ -106,7 +108,7 @@ public class Order {
         int result;
         long temp;
         result = id;
-        result = 31 * result + (book != null ? book.hashCode() : 0);
+        result = 31 * result + (books != null ? books.hashCode() : 0);
         temp = Double.doubleToLongBits(totalPrice);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (customer != null ? customer.hashCode() : 0);
@@ -117,8 +119,10 @@ public class Order {
     }
 
     public String getOrderDetails() {
-        return "Order{" + "id=" + id +
-               ", Book=" + book.getTitle() + " : price " + book.getPrice() +
+        return "Order{" +
+               "id=" + id +
+               ", books=" + books +
+               ", totalPrice=" + totalPrice +
                ", status=" + status +
                ", openingTimestamp=" + openingTimestamp +
                '}';
