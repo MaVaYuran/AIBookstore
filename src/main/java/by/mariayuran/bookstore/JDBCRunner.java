@@ -21,7 +21,7 @@ public class JDBCRunner {
         OrderDao orderDao = new OrderDaoImpl(sessionFactory);
         OrderService orderService = new OrderServiceImpl( orderDao, bookDao);
         Order order = orderService.getOrderById(2);
-//      order.getOrderDetails();
+      order.getOrderDetails();
 
 
     }

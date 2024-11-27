@@ -1,6 +1,8 @@
 package by.mariayuran.bookstore.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -12,8 +14,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @OneToMany(mappedBy = "order")
-    List <Book> books;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+    List<Book> books;
     @Column(name = "total_price")
     private double totalPrice;
     @ManyToOne
@@ -82,6 +84,7 @@ public class Order {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
     private double calculateTotalPrice() {
         return books.stream().mapToDouble(Book::getPrice).sum();
     }
