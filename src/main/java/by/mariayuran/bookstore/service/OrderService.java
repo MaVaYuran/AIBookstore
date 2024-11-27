@@ -1,10 +1,9 @@
 package by.mariayuran.bookstore.service;
 
-import by.mariayuran.bookstore.model.Order;
+import by.mariayuran.bookstore.entity.Order;
 
 public interface OrderService {
     Order getOrderById(int id);
-    void addOrder(Order order);
     boolean completeOrder(int id);
     boolean cancelOrder(int id);
 }
