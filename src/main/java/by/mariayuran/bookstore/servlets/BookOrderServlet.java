@@ -1,14 +1,9 @@
 package by.mariayuran.bookstore.servlets;
 
-import by.mariayuran.bookstore.library.LibraryRepository;
-import by.mariayuran.bookstore.library.LibraryRepositoryImpl;
-import by.mariayuran.bookstore.model.Book;
-import by.mariayuran.bookstore.model.Order;
-import by.mariayuran.bookstore.service.OrderService;
-import by.mariayuran.bookstore.service.OrderServiceImpl;
+import by.mariayuran.bookstore.entity.Book;
+import by.mariayuran.bookstore.entity.Order;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -16,19 +11,13 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/order")
-public class BookOrderServlet extends HttpServlet {
-    protected LibraryRepository libraryRepository;
-    protected List<Book> storeLibrary;
-    protected OrderService orderService;
-
+public class BookOrderServlet extends AppServlet {
+    List<Book> storeLibrary;
     @Override
     public void init() {
-        orderService = new OrderServiceImpl();
-        libraryRepository = new LibraryRepositoryImpl("library.json");
-        storeLibrary = libraryRepository.loadLibrary();
-        System.out.println(storeLibrary);
-
+       storeLibrary  = bookDao.findAll();
     }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,7 +39,7 @@ public class BookOrderServlet extends HttpServlet {
 
         if (selectedBook != null) {
             Order order = new Order(selectedBook);
-            orderService.addOrder(order);
+
             req.setAttribute("order", order);
             req.setAttribute("orderDetails", order.getOrderDetails());
             req.getRequestDispatcher("/jsp/order_details.jsp").forward(req, resp);
