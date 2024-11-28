@@ -1,6 +1,5 @@
 package by.mariayuran.bookstore.servlets;
 
-
 import by.mariayuran.bookstore.entity.Book;
 import by.mariayuran.bookstore.entity.Order;
 import jakarta.servlet.ServletException;

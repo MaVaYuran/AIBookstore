@@ -15,14 +15,13 @@ import java.sql.SQLException;
 
 
 public class JDBCRunner {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
-        BookDao bookDao  = new BookDaoImpl(sessionFactory);
+        BookDao bookDao = new BookDaoImpl(sessionFactory);
         OrderDao orderDao = new OrderDaoImpl(sessionFactory);
-        OrderService orderService = new OrderServiceImpl( orderDao, bookDao);
-        Order order = orderService.getOrderById(2);
-      order.getOrderDetails();
-
-
+        OrderService orderService = new OrderServiceImpl(orderDao, bookDao);
+        Order order = orderDao.findById(1);
+        System.out.println(order.getOrderDetails());
+        orderService.completeOrder(2);
     }
 }

@@ -1,7 +1,6 @@
 package by.mariayuran.bookstore.entity;
 
 import jakarta.persistence.*;
-
 import java.util.Objects;
 
 @Entity

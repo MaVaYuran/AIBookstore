@@ -1,8 +1,6 @@
 package by.mariayuran.bookstore.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;

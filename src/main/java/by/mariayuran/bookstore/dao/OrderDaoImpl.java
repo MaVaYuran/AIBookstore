@@ -1,7 +1,6 @@
 package by.mariayuran.bookstore.dao;
 
 import by.mariayuran.bookstore.entity.Order;
-import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -3,7 +3,7 @@ package by.mariayuran.bookstore.dao;
 import by.mariayuran.bookstore.entity.Order;
 import java.util.List;
 
-public interface OrderDao extends Dao<Order, Integer>{
+public interface OrderDao extends BaseDao<Order, Integer>{
     void save(Order order);
     void update(Order order);
     boolean delete(Integer id);
